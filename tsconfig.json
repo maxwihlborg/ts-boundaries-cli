@@ -1,8 +1,5 @@
 {
   "extends": "@total-typescript/tsconfig/bundler/no-dom/library",
-  "compilerOptions": {
-    "rootDir": "src"
-  },
   "exclude": ["node_modules"],
-  "include": ["src"]
+  "include": ["src", "scripts"]
 }

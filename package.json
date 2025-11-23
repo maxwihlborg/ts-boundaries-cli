@@ -1,9 +1,16 @@
 {
   "name": "ts-boundaries-cli",
   "version": "0.1.0",
-  "keywords": [],
+  "description": "",
+  "keywords": [
+    "fence",
+    "typescript",
+    "import",
+    "boundaries"
+  ],
   "license": "MIT",
   "type": "module",
+  "repository": "github:maxwihlborg/ts-boundaries-cli",
   "bin": {
     "ts-boundaries": "./bin/ts-boundaries.js"
   },
@@ -27,6 +34,7 @@
     "micromatch": "^4.0.8",
     "prettier": "^3.6.2",
     "tsup": "^8.5.1",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "zod": "^4.1.12"
   },

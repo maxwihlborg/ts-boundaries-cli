@@ -8,10 +8,7 @@ const cli = cac("ts-boundaries");
 cli.version(version);
 cli.help();
 
-cli
-  .command("init")
-  .option("--schema", "Output only schema", { default: false })
-  .action(initCommand);
+cli.command("init").action(initCommand);
 cli
   .command("check")
   .option("--vimgrep", "Output in vimgrep format", { default: false })

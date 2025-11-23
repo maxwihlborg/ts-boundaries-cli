@@ -6,7 +6,6 @@ import { FenceConfigSchema } from "./schema.js";
 import type { FenceContext } from "./types.js";
 
 export const CONFIG_FILENAME = "fence.config.json";
-export const CONFIG_SCHEMA_FILENAME = "fence.schema.json";
 
 export async function loadFenceContext(cwd: string): Promise<FenceContext> {
   const configPath = find.up(CONFIG_FILENAME, { cwd: cwd });
