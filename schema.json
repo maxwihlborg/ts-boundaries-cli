@@ -1,28 +1,35 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Configuration for TypeScript boundaries enforcement",
   "type": "object",
   "properties": {
     "$schema": {
+      "description": "JSON Schema reference for IDE support",
       "type": "string"
     },
     "rules": {
+      "description": "List of fence rules to enforce architectural boundaries",
       "type": "array",
       "items": {
+        "description": "A fence rule that prevents specific imports from specific locations",
         "type": "object",
         "properties": {
           "from": {
+            "description": "Glob patterns matching source files that this rule applies to",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "disallow": {
+            "description": "Glob patterns matching import paths that should be disallowed",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
           "message": {
+            "description": "Custom error message to display when this rule is violated",
             "type": "string"
           }
         },
@@ -34,9 +41,11 @@
       }
     },
     "resolve": {
+      "description": "Import resolution configuration",
       "type": "object",
       "properties": {
         "alias": {
+          "description": "Path aliases for import resolution (e.g., '~': './src')",
           "type": "object",
           "propertyNames": {
             "type": "string"

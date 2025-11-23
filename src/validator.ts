@@ -8,6 +8,13 @@ import path from "node:path";
 import { matchesAnyPattern } from "./matcher.js";
 import { isMatch } from "micromatch";
 
+function joinPathSegments(lhs: string, rhs: string): string {
+  if (lhs.endsWith("/") || rhs.startsWith("/")) {
+    return lhs + rhs;
+  }
+  return lhs + "/" + rhs;
+}
+
 function* resolveImportPaths(
   importInfo: ImportInfo,
   { config, configRoot }: FenceContext,
@@ -24,7 +31,10 @@ function* resolveImportPaths(
       if (importInfo.importPath.startsWith(alias)) {
         yield path.resolve(
           configRoot,
-          aliasPath + importInfo.importPath.slice(alias.length),
+          joinPathSegments(
+            aliasPath,
+            importInfo.importPath.slice(alias.length),
+          ),
         );
       }
     }

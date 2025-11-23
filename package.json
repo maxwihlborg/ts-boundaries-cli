@@ -19,7 +19,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && tsup",
+    "build": "tsc && tsx ./scripts/update-schema.ts && tsup",
     "prepublish": "pnpm run build"
   },
   "devDependencies": {

@@ -9,7 +9,8 @@ export async function initCommand() {
     const configPath = join(cwd, CONFIG_FILENAME);
 
     const defaultConfig = {
-      $schema: "./fence.schema.json",
+      $schema:
+        "https://raw.githubusercontent.com/maxwihlborg/ts-boundaries-cli/refs/heads/main/schema.json",
       rules: [],
     };
 
