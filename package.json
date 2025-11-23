@@ -1,0 +1,37 @@
+{
+  "name": "ts-boundaries-cli",
+  "version": "0.1.0",
+  "keywords": [],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "ts-boundaries": "./bin/ts-boundaries.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && tsup",
+    "prepublish": "pnpm run build"
+  },
+  "devDependencies": {
+    "@total-typescript/tsconfig": "^1.0.4",
+    "@types/micromatch": "^4.0.10",
+    "@types/node": "^24.10.1",
+    "cac": "^6.7.14",
+    "colorette": "^2.0.20",
+    "empathic": "^2.0.0",
+    "fast-glob": "^3.3.3",
+    "iter-tools-es": "^7.5.4",
+    "micromatch": "^4.0.8",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "zod": "^4.1.12"
+  },
+  "peerDependencies": {
+    "typescript": "*"
+  },
+  "packageManager": "pnpm@10.14.0"
+}
