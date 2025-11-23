@@ -23,7 +23,7 @@ pnpm dpx ts-boundaries-cli check
 ts-boundaries init
 ```
 
-This creates a `fence.config.json` file with an empty rules array and a JSON schema for IDE support.
+This creates a `ts-boundaries.config.json` file with an empty rules array and a JSON schema for IDE support.
 
 2. Add rules to your config:
 
