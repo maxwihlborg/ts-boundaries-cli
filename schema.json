@@ -8,10 +8,10 @@
       "type": "string"
     },
     "rules": {
-      "description": "List of fence rules to enforce architectural boundaries",
+      "description": "List of boundary rules to enforce architectural boundaries",
       "type": "array",
       "items": {
-        "description": "A fence rule that prevents specific imports from specific locations",
+        "description": "A boundary rule that prevents specific imports from specific locations",
         "type": "object",
         "properties": {
           "from": {

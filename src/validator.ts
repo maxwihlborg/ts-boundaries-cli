@@ -1,8 +1,8 @@
 import type {
-  FenceContext,
+  BoundaryContext,
   ImportInfo,
   ValidationError,
-  FenceRule,
+  BoundaryRule,
 } from "./types.js";
 import path from "node:path";
 import { matchesAnyPattern } from "./matcher.js";
@@ -17,7 +17,7 @@ function joinPathSegments(lhs: string, rhs: string): string {
 
 function* resolveImportPaths(
   importInfo: ImportInfo,
-  { config, configRoot }: FenceContext,
+  { config, configRoot }: BoundaryContext,
 ) {
   if (importInfo.importPath.startsWith(".")) {
     yield path.resolve(
@@ -43,8 +43,8 @@ function* resolveImportPaths(
 
 function isDisallowedImport(
   importPath: string,
-  rule: FenceRule,
-  { configRoot }: FenceContext,
+  rule: BoundaryRule,
+  { configRoot }: BoundaryContext,
 ): boolean {
   if (isMatch(path.relative(configRoot, importPath), rule.disallow)) {
     return true;
@@ -54,7 +54,7 @@ function isDisallowedImport(
 
 export function* validateImportIt(
   importInfo: ImportInfo,
-  context: FenceContext,
+  context: BoundaryContext,
 ): Iterable<ValidationError> {
   for (const rule of context.config.rules) {
     if (!matchesAnyPattern(importInfo.filePath, rule.from, context)) continue;

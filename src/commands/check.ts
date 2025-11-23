@@ -1,6 +1,6 @@
 import { green, red } from "colorette";
 import { asyncFilter, asyncFlatMap, execPipe } from "iter-tools-es";
-import { loadFenceContext } from "../context.js";
+import { loadBoundaryContext } from "../context.js";
 import { findFiles } from "../matcher.js";
 import path from "node:path";
 import { extractImportsIt } from "../parser.js";
@@ -8,7 +8,7 @@ import { validateImportIt } from "../validator.js";
 
 export async function checkCommand(options: { vimgrep: boolean }) {
   const cwd = process.cwd();
-  const context = await loadFenceContext(cwd);
+  const context = await loadBoundaryContext(cwd);
 
   let errorCount = 0;
 
@@ -38,12 +38,14 @@ export async function checkCommand(options: { vimgrep: boolean }) {
 
   if (errorCount <= 0) {
     if (!options.vimgrep) {
-      console.log(`[${green("SUCCESS")}] No fence violations found`);
+      console.log(`[${green("SUCCESS")}] No boundary violations found`);
     }
     process.exit(0);
   } else {
     if (!options.vimgrep) {
-      console.log(`[${red("ERROR")}] Found ${errorCount} fence violation(s)`);
+      console.log(
+        `[${red("ERROR")}] Found ${errorCount} boundary violation(s)`,
+      );
     }
     process.exit(1);
   }

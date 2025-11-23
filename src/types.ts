@@ -1,8 +1,8 @@
 import type { z } from "zod";
-import type { FenceConfigSchema, FenceRuleSchema } from "./schema.js";
+import type { BoundaryConfigSchema, BoundaryRuleSchema } from "./schema.js";
 
-export type FenceRule = z.output<typeof FenceRuleSchema>;
-export type FenceConfig = z.output<typeof FenceConfigSchema>;
+export type BoundaryRule = z.output<typeof BoundaryRuleSchema>;
+export type BoundaryConfig = z.output<typeof BoundaryConfigSchema>;
 export type ImportInfo = {
   importPath: string;
   filePath: string;
@@ -16,10 +16,10 @@ export type ValidationError = {
   line: number;
   column: number;
   message: string;
-  rule: FenceRule;
+  rule: BoundaryRule;
 };
 
-export type FenceContext = {
+export type BoundaryContext = {
   configRoot: string;
-  config: FenceConfig;
+  config: BoundaryConfig;
 };

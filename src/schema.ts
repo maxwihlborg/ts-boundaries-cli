@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const FenceRuleSchema = z
+export const BoundaryRuleSchema = z
   .object({
     from: z.array(z.string()).meta({
       description:
@@ -16,16 +16,16 @@ export const FenceRuleSchema = z
   })
   .meta({
     description:
-      "A fence rule that prevents specific imports from specific locations",
+      "A boundary rule that prevents specific imports from specific locations",
   });
 
-export const FenceConfigSchema = z
+export const BoundaryConfigSchema = z
   .object({
     $schema: z.string().optional().meta({
       description: "JSON Schema reference for IDE support",
     }),
-    rules: z.array(FenceRuleSchema).meta({
-      description: "List of fence rules to enforce architectural boundaries",
+    rules: z.array(BoundaryRuleSchema).meta({
+      description: "List of boundary rules to enforce architectural boundaries",
     }),
     resolve: z
       .object({
@@ -44,5 +44,5 @@ export const FenceConfigSchema = z
   });
 
 export function generateJSONSchema() {
-  return z.toJSONSchema(FenceConfigSchema);
+  return z.toJSONSchema(BoundaryConfigSchema);
 }
