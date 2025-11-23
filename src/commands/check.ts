@@ -7,7 +7,8 @@ import { extractImportsIt } from "../parser.js";
 import { validateImportIt } from "../validator.js";
 
 export async function checkCommand(options: { vimgrep: boolean }) {
-  const context = await loadFenceContext(process.cwd());
+  const cwd = process.cwd();
+  const context = await loadFenceContext(cwd);
 
   let errorCount = 0;
 
@@ -21,11 +22,15 @@ export async function checkCommand(options: { vimgrep: boolean }) {
     asyncFlatMap((importInfo) => validateImportIt(importInfo, context)),
   )) {
     errorCount += 1;
-    
+
     if (options.vimgrep) {
-      console.log(`${error.filePath}:${error.line}:${error.column}: ${error.message}`);
+      console.log(
+        `${error.filePath}:${error.line}:${error.column}: ${error.message}`,
+      );
     } else {
-      console.log(`${error.filePath}:${error.line}:${error.column}`);
+      console.log(
+        `${path.relative(cwd, error.filePath)}:${error.line}:${error.column}`,
+      );
       console.log(`  ${error.message}`);
       console.log(`  Import: ${error.importPath}\n`);
     }
