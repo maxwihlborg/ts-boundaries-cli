@@ -23,7 +23,7 @@ pnpm dpx ts-boundaries-cli check
 ts-boundaries init
 ```
 
-This creates a `ts-boundaries.config.json` file with an empty rules array and a JSON schema for IDE support.
+This creates a `ts-boundaries.config.json` file with an empty rules array.
 
 2. Add rules to your config:
 
@@ -91,6 +91,22 @@ Configure path aliases for import resolution:
 ```
 
 This allows the tool to properly resolve imports like `~/components/Button` to `./src/components/Button`.
+
+### Ignoring Specific Imports
+
+You can opt-out of boundary checking for specific imports using the `// ts-boundaries-ignore` comment:
+
+```typescript
+// ts-boundaries-ignore
+import { ServerAPI } from "../server/api"; // This import will be ignored
+
+import { ClientUtils } from "../client/utils"; // This import will still be checked
+
+// ts-boundaries-ignore
+const serverModule = await import("../server/auth"); // Dynamic import ignored too
+```
+
+The comment must appear directly before the import statement and works with both static imports and dynamic `import()` calls.
 
 ## Commands
 

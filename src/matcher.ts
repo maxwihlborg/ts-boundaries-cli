@@ -3,21 +3,12 @@ import { isMatch } from "micromatch";
 import path from "node:path";
 import type { BoundaryContext } from "./types.js";
 
-export function matchesPattern(
-  filePath: string,
-  pattern: string,
-  context: BoundaryContext,
-): boolean {
-  const relativePath = path.relative(context.configRoot, filePath);
-  return isMatch(relativePath, pattern);
-}
-
 export function matchesAnyPattern(
   filePath: string,
   patterns: string[],
   context: BoundaryContext,
 ): boolean {
-  return patterns.some((pattern) => matchesPattern(filePath, pattern, context));
+  return isMatch(path.relative(context.configRoot, filePath), patterns);
 }
 
 export async function* findFiles(

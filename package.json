@@ -1,6 +1,6 @@
 {
   "name": "ts-boundaries-cli",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "A TypeScript architectural boundary enforcement tool that analyzes import statements to prevent unwanted dependencies between different parts of your codebase.",
   "keywords": [
     "fence",

@@ -1,12 +1,6 @@
-import type {
-  BoundaryContext,
-  ImportInfo,
-  ValidationError,
-  BoundaryRule,
-} from "./types.js";
 import path from "node:path";
 import { matchesAnyPattern } from "./matcher.js";
-import { isMatch } from "micromatch";
+import type { BoundaryContext, ImportInfo, ValidationError } from "./types.js";
 
 function joinPathSegments(lhs: string, rhs: string): string {
   if (lhs.endsWith("/") || rhs.startsWith("/")) {
@@ -41,17 +35,6 @@ function* resolveImportPaths(
   }
 }
 
-function isDisallowedImport(
-  importPath: string,
-  rule: BoundaryRule,
-  { configRoot }: BoundaryContext,
-): boolean {
-  if (isMatch(path.relative(configRoot, importPath), rule.disallow)) {
-    return true;
-  }
-  return false;
-}
-
 export function* validateImportIt(
   importInfo: ImportInfo,
   context: BoundaryContext,
@@ -60,7 +43,7 @@ export function* validateImportIt(
     if (!matchesAnyPattern(importInfo.filePath, rule.from, context)) continue;
 
     for (const importPath of resolveImportPaths(importInfo, context)) {
-      if (!isDisallowedImport(importPath, rule, context)) continue;
+      if (!matchesAnyPattern(importPath, rule.disallow, context)) continue;
       yield {
         filePath: importInfo.filePath,
         importPath: importInfo.importPath,
